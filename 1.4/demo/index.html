@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>butterfly的demo</title>
+    <script src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy-min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="http://a.tbcdn.cn/s/kissy/1.3.0/css/dpl/??base-min.css,forms-min.css">
+</head>
+<body>
+<h2>butterfly的demo</h2>
+<section>
+    <form class="form-horizontal" id="J_Form">
+        <fieldset>
+            <legend>使用退款主题表单</legend>
+            <div class="control-group">
+                <label class="control-label">单选框</label>
+                <div class="controls">
+                    <label class="radio control-inline">
+                        <input type="radio" value="1" name="radio"> 1
+                    </label>
+                    <label class="radio control-inline">
+                        <input type="radio" value="2" name="radio"> 2
+                    </label>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">文本输入框</label>
+                <div class="controls" id="textbox">
+                    <input type="text" class="input-xlarge" placeholder="placeholder测试" id="input01">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input01">带放大镜的文本输入框</label>
+                <div class="controls">
+                    <input type="text" class="input-xlarge" data-magnifier="true" id="text-magnifier">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="input02">金额输入框</label>
+                <div class="controls">
+                    <input type="spinbox" id="input02" value="40.00" data-range="2.00" data-max="88.00" data-min="1" data-hasdecimal="true">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="optionsCheckbox">复选框</label>
+
+                <div class="controls">
+                    <label class="checkbox">
+                        <input type="checkbox" id="optionsCheckbox" value="option1">复选框的文本描述
+                    </label>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="select01">选择框</label>
+
+                <div class="controls">
+                    <select id="select01">
+                        <option value="">选择数字</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="J_UploaderBtn">文件上传</label>
+
+                <div class="controls">
+                    <input type="file" class="g-u" id="J_UploaderBtn" value="上传文件" name="Filedata" >
+                    <input type="hidden" id="J_Urls" name="urls" value="" />
+
+                    <ul id="J_UploaderQueue">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="textarea">文本域</label>
+
+                <div class="controls">
+                    <textarea class="input-xlarge" id="textarea" rows="3" data-limiter="true" data-limiter-max="50" data-limiter-wrapper=".J_LimiterMsg"></textarea>
+
+                    <div class="J_LimiterMsg"></div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <div class="ks-button ks-button-primary ks-button-shown" role="button" aria-disabled="false" tabindex="0" hidefocus="true" aria-pressed="false">保存</div>
+                <div class="ks-button ks-button-shown" role="button" aria-disabled="false" tabindex="0" hidefocus="true">取消</div>
+            </div>
+        </fieldset>
+    </form>
+</section>
+<script>
+    var S = KISSY;
+    if (S.Config.debug) {
+        var srcPath = "../../../";
+        S.config({
+            packages:[
+                {
+                    name:"gallery",
+                    path:srcPath,
+                    charset:"utf-8",
+                    ignorePackageNameInUri:true
+                }
+            ]
+        });
+    }
+
+    S.use('gallery/butterfly/1.4/index,gallery/butterfly/1.4/theme/blue/style.css', function (S, Butterfly) {
+        var uiPath = 'gallery/butterfly/1.4/plugin/ui/';
+        var uis = ['radio','checkbox','select','spinbox','text','textarea'];
+        S.each(uis,function(ui,i){
+            uis[i] = uiPath + uis[i];
+        })
+        S.use(uis.join(','), function(S,Radio,Checkbox,Select,Spinbox,Text,Textarea){
+            var butterfly = new Butterfly('#J_Form',{
+                plugins:[new Radio(),new Checkbox(),new Select(),new Spinbox(),new Text(),new Textarea()]
+            });
+            butterfly.render();
+        })
+    })
+</script>
+</body>
+</html>
