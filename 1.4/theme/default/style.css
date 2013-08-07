@@ -1,0 +1,9 @@
+.control-group{margin-top:18px;}
+.control-group .control-label{width:130px}
+.control-group .controls{margin-left:144px}
+.control-group em{color:#f60;vertical-align:middle;margin-right:-6px}
+.control-group .text-input{border-radius:0;height:16px}
+.control-group .textarea{border-radius:0}
+.control-group .btn-wrapper{padding-top:20px;border-top:1px solid #f4f4f4;margin-top:10px}
+.ks-letter-count{color:#bcbcbc;}
+.ks-letter-count em{color:#bcbcbc}
