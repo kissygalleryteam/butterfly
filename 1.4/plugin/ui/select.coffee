@@ -1,4 +1,4 @@
-KISSY.add (S,Base,MenuButton)->
+KISSY.add (S,Base,Select)->
     SelectUi = (config)->
       SelectUi.superclass.constructor.call(@, config)
     S.extend SelectUi,Base,
@@ -13,10 +13,10 @@ KISSY.add (S,Base,MenuButton)->
         unless @._isRenderUi($el)
           return false
         @.set 'target',$el
-        @._renderUi(MenuButton.Select.decorate)
+        @._renderUi(Select)
     ,ATTRS:
       type:
         value:'select'
     return SelectUi
   ,
-    requires : ['./base','menubutton']
+    requires : ['./base','gallery/select/1.4/']

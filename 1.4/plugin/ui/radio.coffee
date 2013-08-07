@@ -6,9 +6,9 @@ KISSY.add (S,Node,Base,Radio)->
       ###input元素循环后触发###
       _inputEachHandler:(ev)->
         $input = ev.$el
+        @.set 'target',$input
         unless @._isRenderUi($input)
           return true
-        @.set 'target',$input
         @._renderUi(Radio)
     ,ATTRS:
       type:

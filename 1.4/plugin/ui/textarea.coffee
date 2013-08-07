@@ -11,9 +11,9 @@ KISSY.add (S,Node,Text)->
     ###textarea元素循环后触发###
     _textareaEachHandler: (ev)->
       $el = ev.$el
+      @.set 'target',$el
       unless @._isRenderUi($el)
         return false
-      @.set 'target',$el
       @._renderLimiter()
   ,ATTRS:
       type:

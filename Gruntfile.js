@@ -29,6 +29,38 @@ module.exports = function(grunt) {
                     {
                         src: "<%= pkg.version %>/index.js",
                         dest: "<%= pkg.version %>/build/index.js"
+                    },
+                    {
+                        src: "<%= pkg.version %>/plugin/ui/checkbox.js",
+                        dest: "<%= pkg.version %>/build/plugin/ui/checkbox.js"
+                    },
+                    {
+                        src: "<%= pkg.version %>/plugin/ui/radio.js",
+                        dest: "<%= pkg.version %>/build/plugin/ui/radio.js"
+                    },
+                    {
+                        src: "<%= pkg.version %>/plugin/ui/select.js",
+                        dest: "<%= pkg.version %>/build/plugin/ui/select.js"
+                    },
+                    {
+                        src: "<%= pkg.version %>/plugin/ui/text.js",
+                        dest: "<%= pkg.version %>/build/plugin/ui/text.js"
+                    },
+                    {
+                        src: "<%= pkg.version %>/plugin/ui/textarea.js",
+                        dest: "<%= pkg.version %>/build/plugin/ui/textarea.js"
+                    },
+                    {
+                        src: "<%= pkg.version %>/plugin/ui/uploader.js",
+                        dest: "<%= pkg.version %>/build/plugin/ui/uploader.js"
+                    },
+                    {
+                        src: "<%= pkg.version %>/plugin/ui/spinbox.js",
+                        dest: "<%= pkg.version %>/build/plugin/ui/spinbox.js"
+                    },
+                    {
+                        src: "<%= pkg.version %>/plugin/auth.js",
+                        dest: "<%= pkg.version %>/build/plugin/auth.js"
                     }
                 ]
             }
@@ -43,8 +75,28 @@ module.exports = function(grunt) {
                 }
             },
             base: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: '<%= pkg.version %>/build/',
+                        src: ['**/*.js', '!**/*-min.js'],
+                        dest: '<%= pkg.version %>/build/',
+                        ext: '-min.js'
+                    }
+                ]
+            }
+        },
+        copy: {
+            main: {
+                files: [
+                    {src: ['<%= pkg.version %>/theme/default/style.css'], dest: '<%= pkg.version %>/build/theme/default/style.css'}
+                ]
+            }
+        },
+        cssmin: {
+            combine: {
                 files: {
-                    '<%= pkg.version %>/build/index-min.js': ['<%= pkg.version %>/build/index.js']
+                    '<%= pkg.version %>/build/theme/default/style-min.css': ['<%= pkg.version %>/build/theme/default/style.css']
                 }
             }
         }
@@ -53,5 +105,7 @@ module.exports = function(grunt) {
     // 使用到的任务，可以增加其他任务
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-kmc');
-    return grunt.registerTask('default', ['kmc', 'uglify']);
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    return grunt.registerTask('default', ['kmc', 'uglify','copy','cssmin']);
 };

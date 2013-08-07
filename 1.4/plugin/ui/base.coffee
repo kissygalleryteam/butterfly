@@ -76,6 +76,10 @@ KISSY.add (S,Node,Base)->
         if val
           if prefix
             attr = attr.replace prefix,''
+          if val is 'true'
+            val = true
+          if val is 'false'
+            val = false
           config[attr] = val
       @.set 'config',config
       return config

@@ -55,7 +55,7 @@ KISSY.add (S,Node,Base,TextBox,TextMagnifier,Limiter)->
       unless @.isUseUi('limiter')
         return true
       #合并html tag上的配置
-      ac = ['max','wrapper','isCut','isEnToCn','isRejectTag']
+      ac = ['max','wrapper','isCut','isEnToCn','isRejectTag','defaultTpl','exceedTpl']
       ac = S.map ac,(c)->
         return "limiter-#{c}"
       config = @.mergeTagConfig(ac.join(','),'limiter-')
