@@ -290,6 +290,6 @@ KISSY.add('gallery/butterfly/1.4/plugin/ui/uploader',function(S, Node, Base, Upl
   });
   return UploaderUi;
 }, {
-  requires: ['node', './base', 'gallery/uploader/1.4/', 'gallery/uploader/1.4/plugins/auth/auth', 'gallery/uploader/1.4/plugins/urlsInput/urlsInput', 'gallery/uploader/1.4/plugins/proBars/proBars', 'gallery/uploader/1.4/plugins/tagConfig/tagConfig', 'gallery/uploader/1.4/themes/imageUploader/index', 'gallery/uploader/1.4/themes/imageUploader/style.css']
+  requires: ['node', './base', 'gallery/uploader/1.4/', 'gallery/uploader/1.4/plugins/auth/auth', 'gallery/uploader/1.4/plugins/urlsInput/urlsInput', 'gallery/uploader/1.4/plugins/proBars/proBars', 'gallery/uploader/1.4/plugins/tagConfig/tagConfig', 'gallery/uploader/1.4/themes/grayUploader/index', 'gallery/uploader/1.4/themes/grayUploader/style.css']
 });
 

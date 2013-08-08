@@ -6,6 +6,8 @@
 .control-group .textarea{border-radius:0}
 .control-group .radio{padding-left:0}
 .control-group .btn-wrapper{padding-top:20px;border-top:1px solid #f4f4f4;margin-top:10px}
+.auth-msg{margin-top:10px;padding:8px 30px;font-size:12px;line-height:13px;color:#333}
+.auth-error{border:1px solid #ffe1cc;background:url("http://img02.taobaocdn.com/tps/i2/T1zSeXFgVaXXcu5FDa-17-17.png") 7px 5px no-repeat #ffefe3}
 .ks-letter-count{color:#bcbcbc;}
 .ks-letter-count em{color:#bcbcbc}
 .ks-radio,.ks-radio-hover,.ks-radio-selected,.ks-radio-disabled{background:url("http://img03.taobaocdn.com/tps/i3/T1Xj_tXbxeXXaKS.fo-232-65.png") -8px -33px;cursor:pointer;height:17px;line-height:18px;vertical-align:middle;width:17px;display:inline-block;outline:none}
@@ -18,5 +20,3 @@
 .bf-menu{border:1px solid #ccc;border-top:0;background-color:#fff;z-index:20000;}
 .bf-menu .bf-option{height:26px;line-height:26px;color:#333;font-size:12px;padding-left:12px;cursor:pointer}
 .bf-menu .bf-option-hover{color:#f60;background-color:#fff8f3}
-.auth-msg{margin-top:10px;padding:8px 30px;font-size:12px;line-height:13px;color:#333}
-.auth-error{border:1px solid #ffe1cc;background:url("http://img02.taobaocdn.com/tps/i2/T1zSeXFgVaXXcu5FDa-17-17.png") 7px 5px no-repeat #ffefe3}
