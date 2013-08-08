@@ -6,6 +6,33 @@ KISSY.add (S,Node,Base)->
     Ui.superclass.constructor.call(@, config)
     @.set '_guid','bf-' + S.guid()
     @.set 'config',config
+
+  S.mix(Ui,{
+    ###
+     获取标签上的配置
+     * @param {NodeList} $target 目标元素
+     * @param {String} attrs 目标元素上的属性(比如"max"取data-max="10")
+     * @param {String} prefix 排除前缀，比如data-limiter-wrapper 要吧limiter-去掉
+     * @return {Object}
+    ###
+    tagConfig:($target,attrs,prefix)->
+      config = {}
+      unless $target.length
+        return config
+      unless S.isArray attrs
+        return config
+      S.each attrs,(attr)->
+        val = $target.attr(DATA + attr)
+        if val
+          if prefix
+            attr = attr.replace prefix,''
+          if val is 'true'
+            val = true
+          if val is 'false'
+            val = false
+          config[attr] = val
+      return config
+  })
   S.extend Ui,Base,
     ###插件初始化###
     pluginInitializer:(host)->
@@ -59,30 +86,6 @@ KISSY.add (S,Node,Base)->
       cls.render && cls.render()
       @.set 'ui',cls
       return cls
-    ###
-    合并标签上的配置
-       * @param {String} attrs 目标元素上的属性(比如"max"取data-max="10")
-       * @param {String} prefix 排除前缀，比如data-limiter-wrapper 要吧limiter-去掉
-       * @return {Object}
-    ###
-    mergeTagConfig: (attrs,prefix)->
-      config = @.get 'config'
-      $target = @.get 'target'
-      unless S.isString attrs
-        return false
-      attrs = attrs.split ','
-      S.each attrs,(attr)->
-        val = $target.attr(DATA + attr)
-        if val
-          if prefix
-            attr = attr.replace prefix,''
-          if val is 'true'
-            val = true
-          if val is 'false'
-            val = false
-          config[attr] = val
-      @.set 'config',config
-      return config
     ###
     根据data-{ui}的存在性来判断是否使用该ui组件
        * @param {String} uiName Ui组件名称

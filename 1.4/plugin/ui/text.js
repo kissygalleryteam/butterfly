@@ -21,15 +21,22 @@ KISSY.add(function(S, Node, Base, TextBox, TextMagnifier, Limiter) {
       return this._renderUi();
     },
     _renderUi: function() {
-      var $input, cls, config, parent;
+      var $input, Cls, cls, config, parent, tagConfigKeys, tagconfig;
 
+      Cls = TextBox.TextBox;
       $input = this.get('target');
       if (!$input.length) {
         return true;
       }
       config = this.get('config');
       parent = $input.parent('').getDOMNode();
-      cls = new TextBox.TextBox(parent, config);
+      tagConfigKeys = ['number'];
+      tagconfig = Base.tagConfig($input, tagConfigKeys);
+      S.mix(config, tagconfig);
+      if (config.number) {
+        Cls = TextBox.NumberTextBox;
+      }
+      cls = new Cls(parent, config);
       cls.render();
       this._renderTextMagnifier();
       this._renderLimiter();
@@ -77,7 +84,7 @@ KISSY.add(function(S, Node, Base, TextBox, TextMagnifier, Limiter) {
       ac = S.map(ac, function(c) {
         return "limiter-" + c;
       });
-      config = this.mergeTagConfig(ac.join(','), 'limiter-');
+      config = Base.tagConfig($input, ac, 'limiter-');
       limiter = new Limiter($input, config);
       return limiter.render();
     }

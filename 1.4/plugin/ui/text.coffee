@@ -11,12 +11,21 @@ KISSY.add (S,Node,Base,TextBox,TextMagnifier,Limiter)->
       @.set 'target',$input
       @._renderUi()
     _renderUi:()->
+      Cls = TextBox.TextBox
       $input = @.get 'target'
       unless $input.length
         return true
       config = @.get 'config'
       parent = $input.parent('').getDOMNode()
-      cls = new TextBox.TextBox parent,config
+      #合并html tag上的配置
+      tagConfigKeys = ['number']
+      tagconfig = Base.tagConfig($input,tagConfigKeys)
+      S.mix(config,tagconfig)
+      #配置了data-number="true"，那么使用NumberTextBox类
+      if config.number
+        Cls = TextBox.NumberTextBox
+
+      cls = new Cls parent,config
       cls.render()
       @._renderTextMagnifier()
       @._renderLimiter()
@@ -58,7 +67,7 @@ KISSY.add (S,Node,Base,TextBox,TextMagnifier,Limiter)->
       ac = ['max','wrapper','isCut','isEnToCn','isRejectTag','defaultTpl','exceedTpl']
       ac = S.map ac,(c)->
         return "limiter-#{c}"
-      config = @.mergeTagConfig(ac.join(','),'limiter-')
+      config = Base.tagConfig($input,ac,'limiter-')
       #实例化Limiter组件
       limiter = new Limiter($input,config)
       limiter.render()
