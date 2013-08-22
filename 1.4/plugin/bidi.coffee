@@ -1,5 +1,10 @@
 KISSY.add (S,Node,Base)->
   $ = Node.all
+  ###是否是逻辑需要的tag名称###
+  isTag = ($el,tagName)->
+    tagName = $el.getDOMNode().tagName
+    return tagName is tagName
+
   Bidi = (config)->
     Bidi.superclass.constructor.call(@,config)
     @.set 'config',config
@@ -11,10 +16,10 @@ KISSY.add (S,Node,Base)->
       unless bidi
         return false
       model = bidi.model
+      #选择框的联动，同步模拟选择框
       model.on "render:linkage",(ev)->
         $el = ev.el
-        tagName = $el.getDOMNode().tagName
-        if tagName == 'SELECT'
+        if isTag $el,'SELECT'
           ui = $el.data 'data-ui'
           ui.sync && ui.sync()
   ,
