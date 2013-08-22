@@ -27,17 +27,20 @@ KISSY.add('gallery/butterfly/1.4/index',function(S, Node, RichBase) {
     render: function() {
       return this._eachEl();
     },
+    field: function() {},
     /*遍历表单元素
     */
 
     _eachEl: function() {
-      var $inputs, $selects, $target, $textareas, self;
+      var $inputs, $selects, $target, $textareas, elFields, self;
 
       self = this;
       $target = self.get('target');
       if (!$target.length) {
         return false;
       }
+      elFields = $target.getDOMNode().elements;
+      S.each(elFields, function(el) {});
       $inputs = $target.all('input');
       $inputs.each(function($el) {
         return self.fire('inputEach', {

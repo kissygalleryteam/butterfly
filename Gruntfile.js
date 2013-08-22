@@ -61,6 +61,10 @@ module.exports = function(grunt) {
                     {
                         src: "<%= pkg.version %>/plugin/auth.js",
                         dest: "<%= pkg.version %>/build/plugin/auth.js"
+                    },
+                    {
+                        src: "<%= pkg.version %>/plugin/bidi.js",
+                        dest: "<%= pkg.version %>/build/plugin/bidi.js"
                     }
                 ]
             }

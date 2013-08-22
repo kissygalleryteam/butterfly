@@ -13,15 +13,14 @@ KISSY.add(function(S, Node, Auth) {
 
     pluginInitializer: function(host) {
       this.set('host', host);
-      return host.on('inputEach', this._EachHandler, this);
+      host.on('inputEach', this._EachHandler, this);
+      host.on('selectEach', this._EachHandler, this);
+      return host.on('textareaEach', this._EachHandler, this);
     },
     _EachHandler: function(ev) {
       var $el;
 
       $el = ev.$el;
-      if ($el.attr('name') !== 'refundMoney') {
-        return true;
-      }
       return this.add($el);
     }
   }, {

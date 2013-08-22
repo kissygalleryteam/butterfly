@@ -8,10 +8,10 @@ KISSY.add (S,Node,Auth)->
     pluginInitializer:(host)->
       @.set('host',host)
       host.on 'inputEach',@._EachHandler,@
+      host.on 'selectEach',@._EachHandler,@
+      host.on 'textareaEach',@._EachHandler,@
     _EachHandler: (ev)->
       $el = ev.$el
-      unless $el.attr('name') is 'refundMoney'
-        return true
       @.add($el)
   ,
     ATTRS:

@@ -10,13 +10,18 @@ KISSY.add((S, Node, RichBase)->
     ###
     render: ()->
       @._eachEl()
+    field:()->
+
     ###遍历表单元素###
     _eachEl: ()->
       self = @
       $target = self.get 'target'
       unless $target.length
         return false
+      elFields = $target.getDOMNode().elements
+      S.each(elFields,(el)->
 
+      )
       $inputs = $target.all 'input'
       $inputs.each ($el)->
         self.fire('inputEach',{$el:$el})

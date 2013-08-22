@@ -17,6 +17,45 @@ KISSY.add('gallery/butterfly/1.4/plugin/ui/base',function(S, Node, Base) {
     this.set('_guid', 'bf-' + S.guid());
     return this.set('config', config);
   };
+  S.mix(Ui, {
+    /*
+     获取标签上的配置
+     * @param {NodeList} $target 目标元素
+     * @param {String} attrs 目标元素上的属性(比如"max"取data-max="10")
+     * @param {String} prefix 排除前缀，比如data-limiter-wrapper 要吧limiter-去掉
+     * @return {Object}
+    */
+
+    tagConfig: function($target, attrs, prefix) {
+      var config;
+
+      config = {};
+      if (!$target.length) {
+        return config;
+      }
+      if (!S.isArray(attrs)) {
+        return config;
+      }
+      S.each(attrs, function(attr) {
+        var val;
+
+        val = $target.attr(DATA + attr);
+        if (val) {
+          if (prefix) {
+            attr = attr.replace(prefix, '');
+          }
+          if (val === 'true') {
+            val = true;
+          }
+          if (val === 'false') {
+            val = false;
+          }
+          return config[attr] = val;
+        }
+      });
+      return config;
+    }
+  });
   S.extend(Ui, Base, {
     /*插件初始化
     */
@@ -91,42 +130,6 @@ KISSY.add('gallery/butterfly/1.4/plugin/ui/base',function(S, Node, Base) {
       cls.render && cls.render();
       this.set('ui', cls);
       return cls;
-    },
-    /*
-    合并标签上的配置
-       * @param {String} attrs 目标元素上的属性(比如"max"取data-max="10")
-       * @param {String} prefix 排除前缀，比如data-limiter-wrapper 要吧limiter-去掉
-       * @return {Object}
-    */
-
-    mergeTagConfig: function(attrs, prefix) {
-      var $target, config;
-
-      config = this.get('config');
-      $target = this.get('target');
-      if (!S.isString(attrs)) {
-        return false;
-      }
-      attrs = attrs.split(',');
-      S.each(attrs, function(attr) {
-        var val;
-
-        val = $target.attr(DATA + attr);
-        if (val) {
-          if (prefix) {
-            attr = attr.replace(prefix, '');
-          }
-          if (val === 'true') {
-            val = true;
-          }
-          if (val === 'false') {
-            val = false;
-          }
-          return config[attr] = val;
-        }
-      });
-      this.set('config', config);
-      return config;
     },
     /*
     根据data-{ui}的存在性来判断是否使用该ui组件
@@ -258,15 +261,22 @@ KISSY.add('gallery/butterfly/1.4/plugin/ui/text',function(S, Node, Base, TextBox
       return this._renderUi();
     },
     _renderUi: function() {
-      var $input, cls, config, parent;
+      var $input, Cls, cls, config, parent, tagConfigKeys, tagconfig;
 
+      Cls = TextBox.TextBox;
       $input = this.get('target');
       if (!$input.length) {
         return true;
       }
       config = this.get('config');
       parent = $input.parent('').getDOMNode();
-      cls = new TextBox.TextBox(parent, config);
+      tagConfigKeys = ['number'];
+      tagconfig = Base.tagConfig($input, tagConfigKeys);
+      S.mix(config, tagconfig);
+      if (config.number) {
+        Cls = TextBox.NumberTextBox;
+      }
+      cls = new Cls(parent, config);
       cls.render();
       this._renderTextMagnifier();
       this._renderLimiter();
@@ -314,7 +324,7 @@ KISSY.add('gallery/butterfly/1.4/plugin/ui/text',function(S, Node, Base, TextBox
       ac = S.map(ac, function(c) {
         return "limiter-" + c;
       });
-      config = this.mergeTagConfig(ac.join(','), 'limiter-');
+      config = Base.tagConfig($input, ac, 'limiter-');
       limiter = new Limiter($input, config);
       return limiter.render();
     }
