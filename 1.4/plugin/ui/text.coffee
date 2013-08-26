@@ -40,18 +40,8 @@ KISSY.add (S,Node,Base,TextBox,TextMagnifier,Limiter)->
       #data-magnifier是否使用文本放大镜标识
       unless @.isUseUi('magnifier')
         return true
-      #获取文本框的id
-      #TODO:需要修改TextMagnifier组件
-      id = $input.attr 'id'
-      unless id
-        id = 'bf-'+ S.guid()
-        $input.attr 'id',id
-
       config = @.get 'config'
-      S.mix(config,{id:'#'+id})
-      @.set 'config',config
-
-      cls = new TextMagnifier config
+      cls = new TextMagnifier $input,config
       cls.render()
       return cls
     ###
@@ -76,4 +66,4 @@ KISSY.add (S,Node,Base,TextBox,TextMagnifier,Limiter)->
         value:'text'
   return Text
 ,
-  requires : ['node','./base','gallery/textbox/1.4/','gallery/textMagnifier/1.0/','gallery/limiter/1.4/']
+  requires : ['node','./base','gallery/textbox/1.4/','gallery/textMagnifier/1.1/','gallery/limiter/1.4/']

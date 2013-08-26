@@ -48,23 +48,14 @@ KISSY.add(function(S, Node, Base, TextBox, TextMagnifier, Limiter) {
     */
 
     _renderTextMagnifier: function() {
-      var $input, cls, config, id;
+      var $input, cls, config;
 
       $input = this.get('target');
       if (!this.isUseUi('magnifier')) {
         return true;
       }
-      id = $input.attr('id');
-      if (!id) {
-        id = 'bf-' + S.guid();
-        $input.attr('id', id);
-      }
       config = this.get('config');
-      S.mix(config, {
-        id: '#' + id
-      });
-      this.set('config', config);
-      cls = new TextMagnifier(config);
+      cls = new TextMagnifier($input, config);
       cls.render();
       return cls;
     },
@@ -97,5 +88,5 @@ KISSY.add(function(S, Node, Base, TextBox, TextMagnifier, Limiter) {
   });
   return Text;
 }, {
-  requires: ['node', './base', 'gallery/textbox/1.4/', 'gallery/textMagnifier/1.0/', 'gallery/limiter/1.4/']
+  requires: ['node', './base', 'gallery/textbox/1.4/', 'gallery/textMagnifier/1.1/', 'gallery/limiter/1.4/']
 });
