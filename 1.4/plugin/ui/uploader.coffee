@@ -13,6 +13,11 @@ KISSY.add (S,Node,Base,Uploader,Auth,UrlsInput,ProBars,TagConfig,ImageUploader)-
     _renderUi:(Uploader)->
       $input = @.get('target')
       config = @.get 'config'
+      #合并html tag上的配置
+      tagConfigKeys = ['restore']
+      tagconfig = Base.tagConfig($input,tagConfigKeys)
+      S.mix(config,tagconfig)
+
       uploader = new Uploader($input,config)
       uploader.theme new ImageUploader({queueTarget:'#J_UploaderQueue'})
       unless config.plugins
@@ -20,6 +25,9 @@ KISSY.add (S,Node,Base,Uploader,Auth,UrlsInput,ProBars,TagConfig,ImageUploader)-
         uploader.plug new UrlsInput({target:'#refundImageUrls'})
         uploader.plug new ProBars()
         uploader.plug new TagConfig()
+      if(config.restore)
+        uploader.restore config.restore
+      @.set 'ui',uploader
   ,ATTRS:
       type:
         value:'file'

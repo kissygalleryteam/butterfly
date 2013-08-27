@@ -21,10 +21,13 @@ KISSY.add(function(S, Node, Base, Uploader, Auth, UrlsInput, ProBars, TagConfig,
       return this._renderUi(Uploader);
     },
     _renderUi: function(Uploader) {
-      var $input, config, uploader;
+      var $input, config, tagConfigKeys, tagconfig, uploader;
 
       $input = this.get('target');
       config = this.get('config');
+      tagConfigKeys = ['restore'];
+      tagconfig = Base.tagConfig($input, tagConfigKeys);
+      S.mix(config, tagconfig);
       uploader = new Uploader($input, config);
       uploader.theme(new ImageUploader({
         queueTarget: '#J_UploaderQueue'
@@ -35,8 +38,12 @@ KISSY.add(function(S, Node, Base, Uploader, Auth, UrlsInput, ProBars, TagConfig,
           target: '#refundImageUrls'
         }));
         uploader.plug(new ProBars());
-        return uploader.plug(new TagConfig());
+        uploader.plug(new TagConfig());
       }
+      if (config.restore) {
+        uploader.restore(config.restore);
+      }
+      return this.set('ui', uploader);
     }
   }, {
     ATTRS: {
