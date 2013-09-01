@@ -2,6 +2,8 @@ KISSY.add (S,Node,Base)->
   $ = Node.all
   ###是否是逻辑需要的tag名称###
   isTag = ($el,tagName)->
+    if !$el or !$el.length
+      return false
     tagName = $el.getDOMNode().tagName
     return tagName is tagName
 

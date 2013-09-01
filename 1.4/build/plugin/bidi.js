@@ -13,6 +13,9 @@ KISSY.add('gallery/butterfly/1.4/plugin/bidi',function(S, Node, Base) {
   */
 
   isTag = function($el, tagName) {
+    if (!$el || !$el.length) {
+      return false;
+    }
     tagName = $el.getDOMNode().tagName;
     return tagName === tagName;
   };
