@@ -18,10 +18,17 @@ KISSY.add(function(S, Node, Auth) {
       return host.on('textareaEach', this._EachHandler, this);
     },
     _EachHandler: function(ev) {
-      var $el;
+      var $el, field, name;
 
       $el = ev.$el;
-      return this.add($el);
+      if ($el.attr('name') !== 'description') {
+        return false;
+      }
+      name = this.getName($el);
+      field = this.getField(name);
+      if (!field) {
+        return this.add($el);
+      }
     }
   }, {
     ATTRS: {
