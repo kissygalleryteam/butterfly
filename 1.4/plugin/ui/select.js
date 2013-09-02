@@ -17,14 +17,18 @@ KISSY.add(function(S, Base, Select) {
     */
 
     _selectEachHandler: function(ev) {
-      var $el;
+      var $el, isShow, select;
 
       $el = ev.$el;
       if (!this._isRenderUi($el)) {
         return false;
       }
       this.set('target', $el);
-      return this._renderUi(Select);
+      isShow = $el.css('display') !== 'none';
+      select = this._renderUi(Select);
+      if (!isShow) {
+        return select.hide();
+      }
     }
   }, {
     ATTRS: {

@@ -13,7 +13,10 @@ KISSY.add (S,Base,Select)->
         unless @._isRenderUi($el)
           return false
         @.set 'target',$el
-        @._renderUi(Select)
+        isShow = $el.css('display') != 'none'
+        select = @._renderUi(Select)
+        unless isShow
+          select.hide()
     ,ATTRS:
       type:
         value:'select'
