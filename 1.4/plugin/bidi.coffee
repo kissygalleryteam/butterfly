@@ -4,8 +4,8 @@ KISSY.add (S,Node,Base)->
   isTag = ($el,tagName)->
     if !$el or !$el.length
       return false
-    tagName = $el.getDOMNode().tagName
-    return tagName is tagName
+    elTagName = $el.getDOMNode().tagName
+    return elTagName is tagName
 
   Bidi = (config)->
     Bidi.superclass.constructor.call(@,config)

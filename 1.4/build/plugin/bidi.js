@@ -13,11 +13,13 @@ KISSY.add('gallery/butterfly/1.4/plugin/bidi',function(S, Node, Base) {
   */
 
   isTag = function($el, tagName) {
+    var elTagName;
+
     if (!$el || !$el.length) {
       return false;
     }
-    tagName = $el.getDOMNode().tagName;
-    return tagName === tagName;
+    elTagName = $el.getDOMNode().tagName;
+    return elTagName === tagName;
   };
   Bidi = function(config) {
     Bidi.superclass.constructor.call(this, config);
