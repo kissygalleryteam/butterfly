@@ -32,35 +32,41 @@ KISSY.add('gallery/butterfly/1.4/index',function(S, Node, RichBase) {
     */
 
     _eachEl: function() {
-      var $inputs, $selects, $target, $textareas, self;
+      var $target, elFields, self;
 
       self = this;
       $target = self.get('target');
       if (!$target.length) {
         return false;
       }
-      $inputs = $target.all('input');
-      $inputs.each(function($el) {
-        return self.fire('inputEach', {
-          $el: $el
-        });
-      });
-      $selects = $target.all('select');
-      $selects.each(function($el) {
-        $el.attr('type', 'select');
-        return self.fire('selectEach', {
-          $el: $el
-        });
-      });
-      $textareas = $target.all('textarea');
-      return $textareas.each(function($el) {
-        if (!$el.attr('type')) {
-          $el.attr('type', 'textarea');
+      elFields = $target.getDOMNode().elements;
+      S.each(elFields, function(el) {
+        var $el, exclude, type;
+
+        $el = $(el);
+        type = $el.attr('type');
+        switch (el.tagName) {
+          case 'INPUT':
+            exclude = ['button', 'submit'];
+            if (!S.isArray(type, exclude)) {
+              return self.fire('inputEach', {
+                $el: $el
+              });
+            }
+            break;
+          case 'SELECT':
+            $el.attr('type', 'select');
+            return self.fire('selectEach', {
+              $el: $el
+            });
+          case 'TEXTAREA':
+            $el.attr('type', 'textarea');
+            return self.fire('textareaEach', {
+              $el: $el
+            });
         }
-        return self.fire('textareaEach', {
-          $el: $el
-        });
       });
+      return this;
     }
   }, {
     ATTRS: {

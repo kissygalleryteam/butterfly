@@ -11,7 +11,7 @@ KISSY.add (S,Base,Select)->
       _selectEachHandler:(ev)->
         $el = ev.$el
         unless @._isRenderUi($el)
-          return false
+          return true
         @.set 'target',$el
         isShow = $el.css('display') != 'none'
         select = @._renderUi(Select)

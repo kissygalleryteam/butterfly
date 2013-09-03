@@ -18,20 +18,23 @@ KISSY.add((S, Node, RichBase)->
       $target = self.get 'target'
       unless $target.length
         return false
-      $inputs = $target.all 'input'
-      $inputs.each ($el)->
-        self.fire('inputEach',{$el:$el})
-
-      $selects = $target.all 'select'
-      $selects.each ($el)->
-        $el.attr 'type','select'
-        self.fire('selectEach',{$el:$el})
-
-      $textareas = $target.all 'textarea'
-      $textareas.each ($el)->
-        unless $el.attr 'type'
-          $el.attr 'type','textarea'
-        self.fire('textareaEach',{$el:$el})
+      elFields = $target.getDOMNode().elements
+      S.each(elFields,(el)->
+        $el = $(el)
+        type = $el.attr 'type'
+        switch el.tagName
+          when 'INPUT'
+            exclude = ['button','submit']
+            unless S.isArray(type,exclude)
+              self.fire('inputEach',{$el:$el})
+          when 'SELECT'
+            $el.attr 'type','select'
+            self.fire('selectEach',{$el:$el})
+          when 'TEXTAREA'
+            $el.attr 'type','textarea'
+            self.fire('textareaEach',{$el:$el})
+      )
+      return @
   }, {ATTRS:
     ###目标元素###
     target:

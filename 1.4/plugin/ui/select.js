@@ -21,7 +21,7 @@ KISSY.add(function(S, Base, Select) {
 
       $el = ev.$el;
       if (!this._isRenderUi($el)) {
-        return false;
+        return true;
       }
       this.set('target', $el);
       isShow = $el.css('display') !== 'none';
