@@ -5,6 +5,7 @@ optionHoverColor = #FF6600
 optionHoverBgColor = #FFF8F3
 fontSize = 12px
 zIndex = 20000
+height = 18px
 .bf-select
   width: defaultWidth
   border: 1px solid borderColor
@@ -13,6 +14,7 @@ zIndex = 20000
   outline: none
   position: relative
   cursor: pointer
+  height: height
   .bf-menu-button-dropdown
     position: absolute
     top: 10px
@@ -28,14 +30,14 @@ zIndex = 20000
   border-top: 0
   background-color: #fff
   z-index: zIndex
-  .bf-option
+  .bf-menuitem
     height: optionHeight
     line-height: @height
     color: #333333
     font-size: fontSize
     padding-left: 12px
     cursor: pointer
-  .bf-option-hover
+  .bf-menuitem-hover
     color: optionHoverColor
     background-color: optionHoverBgColor
 
