@@ -14,15 +14,15 @@ KISSY.add (S,Node,Base,Uploader,Auth,UrlsInput,ProBars,TagConfig,ImageUploader)-
       $input = @.get('target')
       config = @.get 'config'
       #合并html tag上的配置
-      tagConfigKeys = ['restore']
+      tagConfigKeys = ['restore','urlsHook','queueHook']
       tagconfig = Base.tagConfig($input,tagConfigKeys)
       S.mix(config,tagconfig)
 
       uploader = new Uploader($input,config)
-      uploader.theme new ImageUploader({queueTarget:'#J_UploaderQueue'})
+      uploader.theme new ImageUploader({queueTarget:config.queueHook || ''})
       unless config.plugins
         uploader.plug new Auth()
-        uploader.plug new UrlsInput({target:'#refundImageUrls'})
+        uploader.plug new UrlsInput({target:config.urlsHook || ''})
         uploader.plug new ProBars()
         uploader.plug new TagConfig()
       if(config.restore)
