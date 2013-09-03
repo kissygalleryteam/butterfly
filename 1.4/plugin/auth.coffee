@@ -12,8 +12,6 @@ KISSY.add (S,Node,Auth)->
       host.on 'textareaEach',@._EachHandler,@
     _EachHandler: (ev)->
       $el = ev.$el
-      if $el.attr('name') != 'description'
-        return false
       name = @.getName $el
       field = @.getField name
       unless field

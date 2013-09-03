@@ -21,9 +21,6 @@ KISSY.add(function(S, Node, Auth) {
       var $el, field, name;
 
       $el = ev.$el;
-      if ($el.attr('name') !== 'description') {
-        return false;
-      }
       name = this.getName($el);
       field = this.getField(name);
       if (!field) {

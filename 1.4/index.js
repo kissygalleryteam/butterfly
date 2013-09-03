@@ -26,15 +26,13 @@ KISSY.add(function(S, Node, RichBase) {
     */
 
     _eachEl: function() {
-      var $inputs, $selects, $target, $textareas, elFields, self;
+      var $inputs, $selects, $target, $textareas, self;
 
       self = this;
       $target = self.get('target');
       if (!$target.length) {
         return false;
       }
-      elFields = $target.getDOMNode().elements;
-      S.each(elFields, function(el) {});
       $inputs = $target.all('input');
       $inputs.each(function($el) {
         return self.fire('inputEach', {

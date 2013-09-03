@@ -18,10 +18,6 @@ KISSY.add((S, Node, RichBase)->
       $target = self.get 'target'
       unless $target.length
         return false
-      elFields = $target.getDOMNode().elements
-      S.each(elFields,(el)->
-
-      )
       $inputs = $target.all 'input'
       $inputs.each ($el)->
         self.fire('inputEach',{$el:$el})
