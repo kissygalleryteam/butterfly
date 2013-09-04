@@ -23,7 +23,8 @@ KISSY.add (S,Node,Base)->
         $el = ev.el
         if isTag $el,'SELECT'
           ui = $el.data 'data-ui'
-          ui.sync && ui.sync()
+          if(S.isFunction(ui.sync))
+             ui.sync()
   ,
     ATTRS:
       ###插件id###

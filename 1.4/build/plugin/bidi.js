@@ -44,7 +44,9 @@ KISSY.add('gallery/butterfly/1.4/plugin/bidi',function(S, Node, Base) {
         $el = ev.el;
         if (isTag($el, 'SELECT')) {
           ui = $el.data('data-ui');
-          return ui.sync && ui.sync();
+          if (S.isFunction(ui.sync)) {
+            return ui.sync();
+          }
         }
       });
     }

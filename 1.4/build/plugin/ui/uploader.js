@@ -265,17 +265,17 @@ KISSY.add('gallery/butterfly/1.4/plugin/ui/uploader',function(S, Node, Base, Upl
 
       $input = this.get('target');
       config = this.get('config');
-      tagConfigKeys = ['restore'];
+      tagConfigKeys = ['restore', 'urlsHook', 'queueHook'];
       tagconfig = Base.tagConfig($input, tagConfigKeys);
       S.mix(config, tagconfig);
       uploader = new Uploader($input, config);
       uploader.theme(new ImageUploader({
-        queueTarget: '#J_UploaderQueue'
+        queueTarget: config.queueHook || ''
       }));
       if (!config.plugins) {
         uploader.plug(new Auth());
         uploader.plug(new UrlsInput({
-          target: '#refundImageUrls'
+          target: config.urlsHook || ''
         }));
         uploader.plug(new ProBars());
         uploader.plug(new TagConfig());
