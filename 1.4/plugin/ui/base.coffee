@@ -66,7 +66,7 @@ KISSY.add (S,Node,Base)->
         return isRender
       type = $target.attr 'type'
       isRender = type is @.get 'type'
-      return isRender && !@._isExist()
+      return isRender && !@._isExist() && @._isNoRender($target)
     ###是否已经存在该Ui实例###
     _isExist:()->
       host = @.get 'host'
@@ -75,6 +75,12 @@ KISSY.add (S,Node,Base)->
       uis = host.get 'uis'
       name = @.get 'name'
       return S.isObject uis[name]
+    ###html tag配置了data-no-render="true"，不运行###
+    _isNoRender:($target)->
+      attr = $target.attr DATA+'no-render'
+      if(attr)
+        return true
+      return false
     ###
       实例化Ui组件
       UiClass:Ui类

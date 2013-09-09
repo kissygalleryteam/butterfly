@@ -100,7 +100,7 @@ KISSY.add('gallery/butterfly/1.4/plugin/ui/base',function(S, Node, Base) {
       }
       type = $target.attr('type');
       isRender = type === this.get('type');
-      return isRender && !this._isExist();
+      return isRender && !this._isExist() && this._isNoRender($target);
     },
     /*是否已经存在该Ui实例
     */
@@ -115,6 +115,18 @@ KISSY.add('gallery/butterfly/1.4/plugin/ui/base',function(S, Node, Base) {
       uis = host.get('uis');
       name = this.get('name');
       return S.isObject(uis[name]);
+    },
+    /*html tag配置了data-no-render="true"，不运行
+    */
+
+    _isNoRender: function($target) {
+      var attr;
+
+      attr = $target.attr(DATA + 'no-render');
+      if (attr) {
+        return true;
+      }
+      return false;
     },
     /*
       实例化Ui组件
