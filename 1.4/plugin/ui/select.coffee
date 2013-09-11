@@ -9,7 +9,6 @@ KISSY.add (S,Base,Select)->
         host.on 'selectEach',@._selectEachHandler,@
       ###select元素循环后触发###
       _selectEachHandler:(ev)->
-        debugger;
         $el = ev.$el
         unless @._isRenderUi($el)
           return true

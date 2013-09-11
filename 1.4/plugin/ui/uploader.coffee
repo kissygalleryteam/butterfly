@@ -1,4 +1,4 @@
-KISSY.add (S,Node,Base,Uploader,Auth,UrlsInput,ProBars,TagConfig,ImageUploader)->
+KISSY.add (S,Node,Base,Uploader,ImageUploader)->
   $ = Node.all
   UploaderUi = (config)->
     UploaderUi.superclass.constructor.call(@, config)
@@ -20,11 +20,12 @@ KISSY.add (S,Node,Base,Uploader,Auth,UrlsInput,ProBars,TagConfig,ImageUploader)-
 
       uploader = new Uploader($input,config)
       uploader.theme new ImageUploader({queueTarget:config.queueHook || ''})
+      plugins = Uploader.plugins
       unless config.plugins
-        uploader.plug new Auth()
-        uploader.plug new UrlsInput({target:config.urlsHook || ''})
-        uploader.plug new ProBars()
-        uploader.plug new TagConfig()
+        uploader.plug new plugins.Auth()
+        uploader.plug new plugins.UrlsInput({target:config.urlsHook || ''})
+        uploader.plug new plugins.ProBars()
+        uploader.plug new plugins.TagConfig()
       if(config.restore)
         uploader.restore config.restore
       @.set 'ui',uploader
@@ -36,4 +37,4 @@ KISSY.add (S,Node,Base,Uploader,Auth,UrlsInput,ProBars,TagConfig,ImageUploader)-
         value:''
   return UploaderUi
 ,
-  requires : ['node','./base','gallery/uploader/1.4/','gallery/uploader/1.4/plugins/auth/auth','gallery/uploader/1.4/plugins/urlsInput/urlsInput','gallery/uploader/1.4/plugins/proBars/proBars','gallery/uploader/1.4/plugins/tagConfig/tagConfig','gallery/uploader/1.4/themes/grayUploader/index','gallery/uploader/1.4/themes/grayUploader/style.css']
+  requires : ['node','./base','gallery/uploader/1.4/aliUploader','gallery/uploader/1.4/themes/grayUploader/index','gallery/uploader/1.4/themes/grayUploader/style.css']

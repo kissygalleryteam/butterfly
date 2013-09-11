@@ -269,7 +269,6 @@ KISSY.add('gallery/butterfly/1.4/plugin/ui/select',function(S, Base, Select) {
     */
 
     _selectEachHandler: function(ev) {
-      debugger;
       var $el, isShow, select;
 
       $el = ev.$el;
