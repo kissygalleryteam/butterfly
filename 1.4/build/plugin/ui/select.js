@@ -100,7 +100,7 @@ KISSY.add('gallery/butterfly/1.4/plugin/ui/base',function(S, Node, Base) {
       }
       type = $target.attr('type');
       isRender = type === this.get('type');
-      return isRender && !this._isExist() && this._isNoRender($target);
+      return isRender && !this._isExist() && !this._isNoRender($target);
     },
     /*是否已经存在该Ui实例
     */
@@ -269,6 +269,7 @@ KISSY.add('gallery/butterfly/1.4/plugin/ui/select',function(S, Base, Select) {
     */
 
     _selectEachHandler: function(ev) {
+      debugger;
       var $el, isShow, select;
 
       $el = ev.$el;

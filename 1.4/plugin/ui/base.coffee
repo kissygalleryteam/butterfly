@@ -66,7 +66,7 @@ KISSY.add (S,Node,Base)->
         return isRender
       type = $target.attr 'type'
       isRender = type is @.get 'type'
-      return isRender && !@._isExist() && @._isNoRender($target)
+      return isRender && !@._isExist() && !@._isNoRender($target)
     ###是否已经存在该Ui实例###
     _isExist:()->
       host = @.get 'host'

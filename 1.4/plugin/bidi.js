@@ -38,8 +38,10 @@ KISSY.add(function(S, Node, Base) {
         $el = ev.el;
         if (isTag($el, 'SELECT')) {
           ui = $el.data('data-ui');
-          if (S.isFunction(ui.sync)) {
-            return ui.sync();
+          if (ui) {
+            if (S.isFunction(ui.sync)) {
+              return ui.sync();
+            }
           }
         }
       });
