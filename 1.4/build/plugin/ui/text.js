@@ -98,7 +98,7 @@ KISSY.add('gallery/butterfly/1.4/plugin/ui/base',function(S, Node, Base) {
       if (!$target.length) {
         return isRender;
       }
-      type = $target.attr('type');
+      type = $target.attr('type' || $target.attr('data-type'));
       isRender = type === this.get('type');
       return isRender && !this._isExist() && !this._isNoRender($target);
     },

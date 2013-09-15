@@ -28,10 +28,11 @@ KISSY.add((S, Node, RichBase)->
             unless S.isArray(type,exclude)
               self.fire('inputEach',{$el:$el})
           when 'SELECT'
-            $el.attr 'type','select'
+            $el.attr 'data-type','textarea'
             self.fire('selectEach',{$el:$el})
           when 'TEXTAREA'
-            $el.attr 'type','textarea'
+            #attr type在IE下会报错
+            $el.attr 'data-type','textarea'
             self.fire('textareaEach',{$el:$el})
       )
       return @
