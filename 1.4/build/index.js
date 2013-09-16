@@ -55,7 +55,7 @@ KISSY.add('gallery/butterfly/1.4/index',function(S, Node, RichBase) {
             }
             break;
           case 'SELECT':
-            $el.attr('data-type', 'textarea');
+            $el.attr('data-type', 'select');
             return self.fire('selectEach', {
               $el: $el
             });

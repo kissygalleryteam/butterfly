@@ -64,7 +64,7 @@ KISSY.add (S,Node,Base)->
       isRender = false
       unless $target.length
         return isRender
-      type = $target.attr 'type' || $target.attr 'data-type'
+      type = $target.attr('type') || $target.attr('data-type')
       isRender = type is @.get 'type'
       return isRender && !@._isExist() && !@._isNoRender($target)
     ###是否已经存在该Ui实例###
