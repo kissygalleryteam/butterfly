@@ -14,7 +14,7 @@ KISSY.add (S,Node,Base,Uploader,ImageUploader)->
       $input = @.get('target')
       config = @.get 'config'
       #合并html tag上的配置
-      tagConfigKeys = ['restore','urlsHook','queueHook']
+      tagConfigKeys = ['restore','urlsHook','queueHook','useName']
       tagconfig = Base.tagConfig($input,tagConfigKeys)
       S.mix(config,tagconfig)
 
@@ -23,7 +23,7 @@ KISSY.add (S,Node,Base,Uploader,ImageUploader)->
       plugins = Uploader.plugins
       unless config.plugins
         uploader.plug new plugins.Auth()
-        uploader.plug new plugins.UrlsInput({target:config.urlsHook || ''})
+        uploader.plug new plugins.UrlsInput({target:config.urlsHook || '',useName:config.useName || false})
         uploader.plug new plugins.ProBars()
         uploader.plug new plugins.TagConfig()
       if(config.restore)

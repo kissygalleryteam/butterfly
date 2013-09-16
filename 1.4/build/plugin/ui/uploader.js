@@ -277,7 +277,7 @@ KISSY.add('gallery/butterfly/1.4/plugin/ui/uploader',function(S, Node, Base, Upl
 
       $input = this.get('target');
       config = this.get('config');
-      tagConfigKeys = ['restore', 'urlsHook', 'queueHook'];
+      tagConfigKeys = ['restore', 'urlsHook', 'queueHook', 'useName'];
       tagconfig = Base.tagConfig($input, tagConfigKeys);
       S.mix(config, tagconfig);
       uploader = new Uploader($input, config);
@@ -288,7 +288,8 @@ KISSY.add('gallery/butterfly/1.4/plugin/ui/uploader',function(S, Node, Base, Upl
       if (!config.plugins) {
         uploader.plug(new plugins.Auth());
         uploader.plug(new plugins.UrlsInput({
-          target: config.urlsHook || ''
+          target: config.urlsHook || '',
+          useName: config.useName || false
         }));
         uploader.plug(new plugins.ProBars());
         uploader.plug(new plugins.TagConfig());
