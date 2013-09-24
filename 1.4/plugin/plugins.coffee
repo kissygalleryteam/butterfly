@@ -1,4 +1,4 @@
-KISSY.add (S,Base,Checkbox,Radio,Select,Spinbox,Text,Textatea,Uploader,Auth,Bidi)->
+KISSY.add (S,Base,Checkbox,Radio,Select,Spinbox,Text,Textarea,Uploader,Auth,Bidi)->
    return{
       Base:Base
       Checkbox:Checkbox
@@ -6,10 +6,10 @@ KISSY.add (S,Base,Checkbox,Radio,Select,Spinbox,Text,Textatea,Uploader,Auth,Bidi
       Select:Select
       Spinbox:Spinbox
       Text:Text
-      Textatea:Textatea
+      Textarea:Textarea
       Uploader:Uploader
       Auth:Auth
       Bidi:Bidi
    }
 ,
-  requires : ['./ui/base','./ui/checkbox','./ui/radio','./ui/select','./ui/spinbox','./ui/text','./ui/textatea','./ui/uploader','./auth','./bidi']
+  requires : ['./ui/base','./ui/checkbox','./ui/radio','./ui/select','./ui/spinbox','./ui/text','./ui/textarea','./ui/uploader','./auth','./bidi']
