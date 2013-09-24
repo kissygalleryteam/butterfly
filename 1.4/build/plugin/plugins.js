@@ -559,7 +559,7 @@ KISSY.add('gallery/butterfly/1.4/plugin/ui/uploader',function(S, Node, Base, Ali
         return true;
       }
       this.set('target', $input);
-      return this._renderUi(Uploader);
+      return this._renderUi(AliUploader);
     },
     _renderUi: function(Uploader) {
       var $input, config, plugins, tagConfigKeys, tagconfig, uploader;

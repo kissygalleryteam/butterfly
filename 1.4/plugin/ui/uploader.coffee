@@ -9,7 +9,7 @@ KISSY.add (S,Node,Base,AliUploader,ImageUploader)->
       unless @._isRenderUi($input)
         return true
       @.set 'target',$input
-      @._renderUi(Uploader)
+      @._renderUi(AliUploader)
     _renderUi:(Uploader)->
       $input = @.get('target')
       config = @.get 'config'
