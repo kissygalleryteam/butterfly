@@ -1,0 +1,7 @@
+.control-group{margin-top:18px;}
+.control-group .control-label{width:130px}
+.control-group .controls{margin-left:144px}
+.control-group em{color:#f60;vertical-align:middle;margin-right:-6px}
+.control-group .text-input{border-radius:0}
+.control-group .textarea{border-radius:0}
+.control-group .radio{padding-left:0}

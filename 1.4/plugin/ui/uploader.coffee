@@ -1,4 +1,4 @@
-KISSY.add (S,Node,Base,Uploader,ImageUploader)->
+KISSY.add (S,Node,Base,AliUploader,ImageUploader)->
   $ = Node.all
   UploaderUi = (config)->
     UploaderUi.superclass.constructor.call(@, config)
@@ -14,10 +14,12 @@ KISSY.add (S,Node,Base,Uploader,ImageUploader)->
       $input = @.get('target')
       config = @.get 'config'
       #合并html tag上的配置
-      tagConfigKeys = ['restore','urlsHook','queueHook','useName']
+      tagConfigKeys = ['restore','urlsHook','queueHook','useName','ali']
       tagconfig = Base.tagConfig($input,tagConfigKeys)
       S.mix(config,tagconfig)
-
+      Uploader = AliUploader.Uploader
+      if config.ali
+        Uploader = AliUploader
       uploader = new Uploader($input,config)
       uploader.theme new ImageUploader({queueTarget:config.queueHook || ''})
       plugins = Uploader.plugins
@@ -37,4 +39,4 @@ KISSY.add (S,Node,Base,Uploader,ImageUploader)->
         value:''
   return UploaderUi
 ,
-  requires : ['node','./base','gallery/uploader/1.4/aliUploader','gallery/uploader/1.4/themes/grayUploader/index','gallery/uploader/1.4/themes/grayUploader/style.css']
+  requires : ['node','./base','gallery/uploader/1.5/aliUploader','gallery/uploader/1.5/themes/grayUploader/index','gallery/uploader/1.5/themes/grayUploader/style.css']
