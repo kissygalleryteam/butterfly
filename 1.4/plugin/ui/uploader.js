@@ -45,6 +45,7 @@ KISSY.add(function(S, Node, Base, AliUploader, ImageUploader) {
         }));
         uploader.plug(new plugins.ProBars());
         uploader.plug(new plugins.TagConfig());
+        uploader.plug(new plugins.ImageZoom());
       }
       if (config.restore) {
         uploader.restore(config.restore);

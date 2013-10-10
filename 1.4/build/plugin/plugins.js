@@ -628,6 +628,7 @@ KISSY.add('gallery/butterfly/1.4/plugin/ui/uploader',function(S, Node, Base, Ali
         }));
         uploader.plug(new plugins.ProBars());
         uploader.plug(new plugins.TagConfig());
+        uploader.plug(new plugins.ImageZoom());
       }
       if (config.restore) {
         uploader.restore(config.restore);

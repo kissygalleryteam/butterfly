@@ -28,6 +28,7 @@ KISSY.add (S,Node,Base,AliUploader,ImageUploader)->
         uploader.plug new plugins.UrlsInput({target:config.urlsHook || '',useName:config.useName || false})
         uploader.plug new plugins.ProBars()
         uploader.plug new plugins.TagConfig()
+        uploader.plug new plugins.ImageZoom()
       if(config.restore)
         uploader.restore config.restore
       @.set 'ui',uploader
