@@ -17,8 +17,9 @@
 .bf-select .bf-menu-button-dropdown{position:absolute;top:10px;right:8px;width:10px;height:5px;background:url("http://img04.taobaocdn.com/tps/i4/T1J6x.FkFeXXX_ownc-30-40.png") -10px -25px no-repeat}
 .bf-menu-button-open .bf-menu-button-dropdown{background-position:-10px -10px}
 .bf-menu{border:1px solid #ccc;border-top:0;background-color:#fff;z-index:20000;}
-.bf-menu .bf-menuitem{height:26px;line-height:26px;color:#333;font-size:12px;padding-left:12px;cursor:pointer}
+.bf-menu .bf-menuitem{height:26px;line-height:26px;color:#333;font-size:12px;padding-left:30px;cursor:pointer}
 .bf-menu .bf-menuitem-hover{color:#f60;background-color:#fff8f3}
+.bf-menu .bf-menuitem-selected{background:url("http://gtms03.alicdn.com/tps/i3/T1J8TvFlVbXXXugmZ.-11-8.png") no-repeat 10px 10px;color:#f60;font-weight:bold}
 .magnifier-popup{z-index:20000}
 .input-magnifier{font-size:20px;border:solid 1px #ffd2b2;background:#fffae5;padding:0 0 0 10px;color:#f40;min-height:30px;}
 .input-magnifier .explain{font-size:12px;color:#b2b2b2;border-top:1px solid #ffd2b2;margin:0 10px 3px 0;padding:3px 0}
