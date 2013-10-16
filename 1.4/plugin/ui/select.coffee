@@ -14,6 +14,11 @@ KISSY.add (S,Base,Select)->
           return true
         @.set 'target',$el
         isShow = $el.css('display') != 'none'
+        config = @.get 'config'
+        #合并html tag上的配置
+        tagConfigKeys = ['width']
+        tagconfig = Base.tagConfig($el,tagConfigKeys)
+        S.mix(config,tagconfig)
         select = @._renderUi(Select)
         unless isShow
           select.hide()
