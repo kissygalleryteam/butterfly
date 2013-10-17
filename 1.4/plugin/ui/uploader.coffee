@@ -1,4 +1,4 @@
-KISSY.add (S,Node,Base,AliUploader,ImageUploader)->
+KISSY.add (S,Node,Base,AliUploader,plugins,ImageUploader)->
   $ = Node.all
   UploaderUi = (config)->
     UploaderUi.superclass.constructor.call(@, config)
@@ -22,7 +22,6 @@ KISSY.add (S,Node,Base,AliUploader,ImageUploader)->
         Uploader = AliUploader
       uploader = new Uploader($input,config)
       uploader.theme new ImageUploader({queueTarget:config.queueHook || ''})
-      plugins = Uploader.plugins
       unless config.plugins
         uploader.plug new plugins.Auth()
         uploader.plug new plugins.UrlsInput({target:config.urlsHook || '',useName:config.useName || false})
@@ -40,4 +39,4 @@ KISSY.add (S,Node,Base,AliUploader,ImageUploader)->
         value:''
   return UploaderUi
 ,
-  requires : ['node','./base','gallery/uploader/1.5/aliUploader','gallery/uploader/1.5/themes/grayUploader/index','gallery/uploader/1.5/themes/grayUploader/style.css']
+  requires : ['node','./base','gallery/uploader/1.5/aliUploader','gallery/uploader/1.5/plugins/plugins','gallery/uploader/1.5/themes/grayUploader/index','gallery/uploader/1.5/themes/grayUploader/style.css']

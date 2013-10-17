@@ -17,7 +17,7 @@ KISSY.add(function(S, Base, Select) {
     */
 
     _selectEachHandler: function(ev) {
-      var $el, config, isShow, select, tagConfigKeys, tagconfig;
+      var $el, isShow, select;
 
       $el = ev.$el;
       if (!this._isRenderUi($el)) {
@@ -25,10 +25,6 @@ KISSY.add(function(S, Base, Select) {
       }
       this.set('target', $el);
       isShow = $el.css('display') !== 'none';
-      config = this.get('config');
-      tagConfigKeys = ['width'];
-      tagconfig = Base.tagConfig($el, tagConfigKeys);
-      S.mix(config, tagconfig);
       select = this._renderUi(Select);
       if (!isShow) {
         return select.hide();
