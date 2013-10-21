@@ -22,18 +22,19 @@ KISSY.add((S, Node, RichBase)->
       S.each(elFields,(el)->
         $el = $(el)
         type = $el.attr 'type'
-        switch el.tagName
-          when 'INPUT'
-            exclude = ['button','submit']
-            unless S.isArray(type,exclude)
-              self.fire('inputEach',{$el:$el})
-          when 'SELECT'
-            $el.attr 'data-type','select'
-            self.fire('selectEach',{$el:$el})
-          when 'TEXTAREA'
-            #attr type在IE下会报错
-            $el.attr 'data-type','textarea'
-            self.fire('textareaEach',{$el:$el})
+        if el
+          switch el.tagName
+            when 'INPUT'
+              exclude = ['button','submit']
+              unless S.isArray(type,exclude)
+                self.fire('inputEach',{$el:$el})
+            when 'SELECT'
+              $el.attr 'data-type','select'
+              self.fire('selectEach',{$el:$el})
+            when 'TEXTAREA'
+              #attr type在IE下会报错
+              $el.attr 'data-type','textarea'
+              self.fire('textareaEach',{$el:$el})
       )
       return @
   }, {ATTRS:
