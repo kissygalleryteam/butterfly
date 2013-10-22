@@ -45,25 +45,27 @@ KISSY.add('gallery/butterfly/1.4/index',function(S, Node, RichBase) {
 
         $el = $(el);
         type = $el.attr('type');
-        switch (el.tagName) {
-          case 'INPUT':
-            exclude = ['button', 'submit'];
-            if (!S.isArray(type, exclude)) {
-              return self.fire('inputEach', {
+        if (el) {
+          switch (el.tagName) {
+            case 'INPUT':
+              exclude = ['button', 'submit'];
+              if (!S.isArray(type, exclude)) {
+                return self.fire('inputEach', {
+                  $el: $el
+                });
+              }
+              break;
+            case 'SELECT':
+              $el.attr('data-type', 'select');
+              return self.fire('selectEach', {
                 $el: $el
               });
-            }
-            break;
-          case 'SELECT':
-            $el.attr('data-type', 'select');
-            return self.fire('selectEach', {
-              $el: $el
-            });
-          case 'TEXTAREA':
-            $el.attr('data-type', 'textarea');
-            return self.fire('textareaEach', {
-              $el: $el
-            });
+            case 'TEXTAREA':
+              $el.attr('data-type', 'textarea');
+              return self.fire('textareaEach', {
+                $el: $el
+              });
+          }
         }
       });
       return this;
