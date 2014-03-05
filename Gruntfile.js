@@ -107,6 +107,34 @@ module.exports = function(grunt) {
                     '<%= pkg.version %>/build/theme/default/style-min.css': ['<%= pkg.version %>/build/theme/default/style.css']
                 }
             }
+        },
+        coffee: {
+            compile: {
+                options: {
+                    //去掉匿名函数包裹
+                    bare:true
+                },
+                files:[
+                    {
+                        expand: true,
+                        cwd: '<%= pkg.version %>',
+                        src: ['**/*.coffee'],
+                        dest: '<%= pkg.version %>',
+                        ext: '.js'
+                    }
+                ]
+            }
+
+        },
+        watch: {
+            options: {
+                spawn: false,
+                livereload: true
+            },
+            scripts: {
+                files: [ '<%= pkg.version %>/**/*.coffee' ],
+                tasks: [ 'coffee']
+            }
         }
     });
 
@@ -115,5 +143,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-kmc');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-coffee');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.registerTask('w',['watch:scripts']);
+    grunt.registerTask('coff',['coffee']);
+    grunt.event.on('watch', function(action, filepath, target) {
+        grunt.log.writeln(target + ': ' + filepath + ' has ' + action);
+    });
     return grunt.registerTask('default', ['kmc', 'uglify','copy','cssmin']);
 };

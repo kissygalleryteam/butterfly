@@ -22,4 +22,4 @@ KISSY.add (S,Base,Select)->
         value:'select'
     return SelectUi
   ,
-    requires : ['./base','gallery/select/1.4/']
+    requires : ['./base','gallery/select/1.5/']
